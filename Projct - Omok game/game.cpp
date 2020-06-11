@@ -20,7 +20,7 @@ int main()
 	bottomLine(COUNT);
 	cout << endl << "●'s X,Y:";
 }
-void topLine(int num)
+void topLine(int num) //위쪽
 {
 	cout << setw(2) << "1" << "┌" << "─";
 	for (int i = 0; i < num - 2; i++)
@@ -29,7 +29,7 @@ void topLine(int num)
 	}
 	cout << "┐" << endl;
 }
-void middleLine(int num)
+void middleLine(int num) //중간
 {
 	cout << "├" << "─";
 	for (int i = 0; i < num - 2; i++)
@@ -38,7 +38,7 @@ void middleLine(int num)
 	}
 	cout << "┤" << endl;
 }
-void bottomLine(int num)
+void bottomLine(int num) // 아래쪽
 {
 	cout << setw(2) << num << "└" << "─";
 	for (int i = 0; i < num - 2; i++)
@@ -46,4 +46,4 @@ void bottomLine(int num)
 		cout << "┴" << "─";
 	}
 	cout << "┘" << endl;
-}
+} 
