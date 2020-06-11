@@ -1,49 +1,69 @@
 #include <iostream>
 #include<iomanip>
+#include<string>
 using namespace std;
-void topLine(int num);
-void middleLine(int num);
-void bottomLine(int num);
+void locationStr(string arr[19][19]);
 int main()
 {
-	int const COUNT = 19;
-	cout << " ====== Let's Play Omok ======\n" << endl << " ";
-	for (int i = 1; i <= COUNT; i++)
-		cout << setw(2) << i;
-	cout << endl;
-	topLine(COUNT);
-	for (int i = 2; i < COUNT; i++)
+	char colorChange = 'B';
+	int x, y;
+	string location[19][19];
+	locationStr(location);
+	while (true)
 	{
-		cout << setw(2) << i;
-		middleLine(COUNT);
+		cout << " ====== Let's Play Omok ======\n" << endl << " ";
+		for (int i = 1; i <= 19; i++)
+			cout << setw(2) << i;
+		for (int i = 0; i < 19; i++)
+		{
+			cout << endl;
+			cout << setw(2) << i + 1;
+			for (int j = 0; j < 19; j++)
+			{
+				cout << location[i][j];
+			}
+		}
+		if (colorChange == 'B')
+			cout << endl << "○'s X,Y:";
+		else
+			cout << endl << "●'s X,Y:";
+		cin >> x >> y;;
+		if (x != 99 && y != 99) //99 99 입력 시 종료
+		{
+			if (colorChange == 'B')
+			{
+				location[x - 1][y - 1] = "○";
+				colorChange = 'W';
+			}
+			else
+			{
+				location[x - 1][y - 1] = "●";
+				colorChange = 'B';
+			}
+			system("cls");
+			continue;
+		}
+		else
+			break;
 	}
-	bottomLine(COUNT);
-	cout << endl << "●'s X,Y:";
+	return 0;
 }
-void topLine(int num) //위쪽
+void locationStr(string arr[19][19])
 {
-	cout << setw(2) << "1" << "┌" << "─";
-	for (int i = 0; i < num - 2; i++)
+	arr[0][0] = "┌ ";
+	arr[0][18] = "┐";
+	arr[18][0] = "└ ";
+	arr[18][18] = "┘";
+	for (int i = 1; i < 18; i++)
 	{
-		cout << "┬" << "─";
+		arr[0][i] = "┬ ";
+		arr[18][i] = "┴ ";
+		arr[i][0] = "├ ";
+		arr[i][18] = "┤";
 	}
-	cout << "┐" << endl;
+	for (int i = 1; i < 18; i++)
+	{
+		for (int j = 1; j < 18; j++)
+			arr[i][j] = "┼ ";
+	}
 }
-void middleLine(int num) //중간
-{
-	cout << "├" << "─";
-	for (int i = 0; i < num - 2; i++)
-	{
-		cout << "┼" << "─";
-	}
-	cout << "┤" << endl;
-}
-void bottomLine(int num) // 아래쪽
-{
-	cout << setw(2) << num << "└" << "─";
-	for (int i = 0; i < num - 2; i++)
-	{
-		cout << "┴" << "─";
-	}
-	cout << "┘" << endl;
-} 
